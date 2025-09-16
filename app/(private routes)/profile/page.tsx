@@ -2,6 +2,26 @@ import Link from "next/link";
 import css from "./ProfilePage.module.css";
 import { getServerMe } from "@/lib/api/serverApi";
 import Image from "next/image";
+import { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "Profile",
+  description:
+    "View and edit your profile information, including username and avatar.",
+  openGraph: {
+    title: "Profile",
+    description:
+      "View and edit your profile information, including username and avatar.",
+    url: "https://notehub.versel.app/",
+    images: [
+      {
+        url: "https://ac.goit.global/fullstack/react/notehub-og-meta.jpg",
+        width: 1200,
+        height: 630,
+        alt: "NoteHub",
+      },
+    ],
+  },
+};
 export default async function Profile() {
   const user = await getServerMe();
   return (
