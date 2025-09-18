@@ -15,10 +15,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
   const note = await fetchServerNoteById(id);
   return {
-    title: " Note:${note.title}",
+    title: ` Note:${note.title}`,
     description: note.content.slice(0, 30),
     openGraph: {
-      title: "Note: ${note.title}",
+      title: `Note: ${note.title}`,
       description: note.content.slice(0, 100),
       url: "https://notehub-app-auth.vercel.app/notes/${id}",
       siteName: "NoteHub",
