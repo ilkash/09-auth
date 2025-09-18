@@ -1,12 +1,11 @@
 import { User } from "@/types/user";
 import { nextServer } from "@/lib/api/api";
-import axios from "axios";
+
 import { NewNote, Note } from "@/types/note";
 interface FetchNotesResponse {
   notes: Note[];
   totalPages: number;
 }
-axios.defaults.baseURL = process.env.NEXT_PUBLIC_API_URL + "/api";
 
 export const fetchNotes = async (
   page: number,
