@@ -4,21 +4,25 @@ import css from "./EditProfilePage.module.css";
 import { getMe, updateMe } from "@/lib/api/clientApi";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { useUserStore } from "@/lib/store/userStore";
 // import Image from "next/image";
 export default function Edit() {
   const router = useRouter();
+  const { user, setUser } = useUserStore();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   useEffect(() => {
     getMe().then((user) => {
       setUsername(user.username ?? "");
       setEmail(user.email ?? "");
+      setUser(user);
     });
-  }, []);
+  }, [user, setUser]);
 
   const handleSaveUser = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    await updateMe({ username });
+    const updatedUser = await updateMe({ username });
+    setUser(updatedUser);
   };
   return (
     <main className={css.mainContent}>
@@ -53,7 +57,7 @@ export default function Edit() {
             </button>
             <button
               type="button"
-              onClick={() => router.push("/profile")}
+              onClick={() => router.back()}
               className={css.cancelButton}
             >
               Cancel

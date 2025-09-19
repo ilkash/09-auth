@@ -35,7 +35,7 @@ export default async function Profile() {
         </div>
         <div className={css.avatarWrapper}>
           <Image
-            src="/my-avatar.png.png"
+            src={user.avatar}
             alt="User Avatar"
             width={120}
             height={120}
